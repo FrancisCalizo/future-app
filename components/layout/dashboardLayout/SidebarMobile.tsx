@@ -9,6 +9,7 @@ import { slide as Menu } from 'react-burger-menu';
 import { _AppContext } from 'components/AppContext';
 import FutureLogo from 'public/images/future-logo.png';
 import { getPathName, handleGetExerciseInformation } from 'components/utils';
+import SearchFilter from 'components/SearchFilter';
 import { theme } from 'components/theme';
 
 interface MobileSidebarProps {
@@ -26,6 +27,18 @@ export default function MobileSidebar({ isBurgerOpen, setIsBurgerOpen }: MobileS
 
   const [currentRoute, setCurrentRoute] = useState<any>(null);
   const [filterSidebarLinks, setFilteredSidebarLinks] = useState(exercises || []);
+
+  const handleChangeSearchFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    if (value) {
+      const filtered = exercises.filter((ex: any) => ex.name.toLowerCase().includes(value.toLowerCase()));
+
+      setFilteredSidebarLinks(filtered);
+    } else {
+      setFilteredSidebarLinks(exercises);
+    }
+  };
 
   useEffect(() => {
     handleGetExerciseInformation(router.query.name as string, exercises, setSelectedExercise);
@@ -80,6 +93,10 @@ export default function MobileSidebar({ isBurgerOpen, setIsBurgerOpen }: MobileS
       <LogoContainer>
         <Image alt="Future" src={FutureLogo} layout="responsive" />
       </LogoContainer>
+
+      <div className="search-filter-container">
+        <SearchFilter placeholder="Filter by exercise name" onChange={handleChangeSearchFilter} />
+      </div>
 
       {filterSidebarLinks.map((link: any, key: number) => (
         <BurgerContainer key={key} isCurrent={currentRoute === `${link.id}`} onClick={() => setIsBurgerOpen(false)}>
