@@ -39,6 +39,8 @@ export default function ExercisePage() {
 
       <p className="description">{selectedExercise?.description}</p>
 
+      <StyledHR />
+
       <div className="video-container">
         <StyledVideo
           width={600}
@@ -151,4 +153,11 @@ const MoreInfoContainer = styled.div`
     font-weight: bold;
     margin-bottom: 0.75rem;
   }
+`;
+
+const StyledHR = styled.hr`
+  max-width: 750px;
+  border-width: 2px;
+  background: ${(props) => props.theme.colors.tertiary};
+  border-color: ${(props) => props.theme.colors.tertiary};
 `;
