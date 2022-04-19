@@ -6,7 +6,7 @@ import { darken, lighten } from 'polished';
 import Image from 'next/image';
 
 import { _AppContext } from 'components/AppContext';
-import { getPathName } from 'components/utils';
+import { getPathName, handleGetExerciseInformation } from 'components/utils';
 import SearchFilter from 'components/SearchFilter';
 import FutureLogo from 'public/images/future-logo.png';
 
@@ -23,19 +23,11 @@ export default function Sidebar() {
 
   // Gather exercise information based on the route URL
   useEffect(() => {
-    handleGetExerciseInformation(router.query.name as string);
+    handleGetExerciseInformation(router.query.name as string, exercises, setSelectedExercise);
     setCurrentRoute(getPathName(router.asPath, '/'));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.asPath, router.query.name]);
-
-  const handleGetExerciseInformation = (path: string) => {
-    if (path) {
-      const exercise = exercises.find((ex: any) => ex.id === path);
-
-      setSelectedExercise(exercise);
-    }
-  };
 
   const handleChangeSearchFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
