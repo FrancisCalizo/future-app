@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import _isEmpty from 'lodash/isEmpty';
+import Image from 'next/image';
 
 import { _AppContext } from 'components/AppContext';
 import DashboardLayout from 'components/layout/dashboardLayout';
+import Pronunciation from 'public/images/pronunciation.png';
 import Button from 'components/Button';
 
 export default function ExercisePage() {
@@ -11,9 +13,25 @@ export default function ExercisePage() {
 
   const [isMoreInfoShowing, setIsMoreInfoShowing] = useState(false);
 
+  const handlePlaySound = (url: string) => {
+    let audio = new Audio(url);
+    audio.play();
+  };
+
   return (
     <MainContainer>
-      <h2 className="title">{selectedExercise?.name}</h2>
+      <div className="title-container">
+        <h2 className="title">{selectedExercise?.name}</h2>
+        <Image
+          alt="Pronunciation"
+          src={Pronunciation}
+          layout="fixed"
+          width={50}
+          height={50}
+          onClick={() => handlePlaySound(selectedExercise?.audio?.url)}
+          priority
+        />
+      </div>
 
       <p className="description">{selectedExercise.description}</p>
 
@@ -58,9 +76,19 @@ export default function ExercisePage() {
 ExercisePage.getLayout = (page: any) => <DashboardLayout>{page}</DashboardLayout>;
 
 const MainContainer = styled.div`
-  .title {
-    font-size: 1.75rem;
-    margin: 1rem 0;
+  .title-container {
+    display: flex;
+    align-items: center;
+
+    .title {
+      font-size: 1.75rem;
+      margin: 1rem 0;
+      margin-right: 0.5rem;
+    }
+
+    img {
+      cursor: pointer;
+    }
   }
 
   .video-container {
