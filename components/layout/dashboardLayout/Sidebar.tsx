@@ -19,11 +19,17 @@ export default function Sidebar() {
   const router = useRouter();
 
   const [currentRoute, setCurrentRoute] = useState<any>(null);
-  const [filterSidebarLinks, setFilteredSidebarLinks] = useState(exercises || []);
+  const [filterSidebarLinks, setFilteredSidebarLinks] = useState(
+    exercises || []
+  );
 
   // Gather exercise information based on the route URL
   useEffect(() => {
-    handleGetExerciseInformation(router.query.name as string, exercises, setSelectedExercise);
+    handleGetExerciseInformation(
+      router.query.name as string,
+      exercises,
+      setSelectedExercise
+    );
     setCurrentRoute(getPathName(router.asPath, '/'));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,7 +39,9 @@ export default function Sidebar() {
     const { value } = e.target;
 
     if (value) {
-      const filtered = exercises.filter((ex: any) => ex.name.toLowerCase().includes(value.toLowerCase()));
+      const filtered = exercises.filter((ex: any) =>
+        ex.name.toLowerCase().includes(value.toLowerCase())
+      );
 
       setFilteredSidebarLinks(filtered);
     } else {
@@ -50,7 +58,10 @@ export default function Sidebar() {
       <h3 className="heading">Exercise List</h3>
 
       <div className="search-filter-container">
-        <SearchFilter placeholder="Filter by exercise name" onChange={handleChangeSearchFilter} />
+        <SearchFilter
+          placeholder="Filter by exercise name"
+          onChange={handleChangeSearchFilter}
+        />
       </div>
 
       <SidebarLinks>
@@ -58,7 +69,9 @@ export default function Sidebar() {
           <GLink key={key} href={`/${link.id}`}>
             <Li isCurrent={currentRoute === `${link.id}`}>
               <div style={{ textTransform: 'capitalize' }}>
-                {`${link.name} ${link.side && `(${link.side.replace('_', ' ')})`}`}
+                {`${link.name} ${
+                  link.side && `(${link.side.replace('_', ' ')})`
+                }`}
               </div>
             </Li>
           </GLink>
@@ -98,7 +111,7 @@ export const SidebarContainer = styled.div`
     padding: 1rem;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     display: none;
   }
 `;
@@ -117,11 +130,14 @@ const Li = styled.li<{ isCurrent: boolean }>`
   display: flex;
   align-items: center;
   color: ${(props) => (props.isCurrent ? '#fff' : 'inherit')};
-  background: ${(props) => (props.isCurrent ? props.theme.colors.secondary : 'transparent')};
+  background: ${(props) =>
+    props.isCurrent ? props.theme.colors.secondary : 'transparent'};
 
   &:hover {
     background: ${(props) =>
-      props.isCurrent ? darken(0.2, props.theme.colors.secondary) : darken(0.025, props.theme.colors.primary)};
+      props.isCurrent
+        ? darken(0.2, props.theme.colors.secondary)
+        : darken(0.025, props.theme.colors.primary)};
     cursor: pointer;
     color: #fff;
   }

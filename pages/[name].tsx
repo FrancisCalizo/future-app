@@ -40,7 +40,12 @@ export default function ExercisePage() {
       <p className="description">{selectedExercise?.description}</p>
 
       <div className="video-container">
-        <StyledVideo width={600} height={500} key={selectedExercise?.video?.url} controls>
+        <StyledVideo
+          width={600}
+          height={500}
+          key={selectedExercise?.video?.url}
+          controls
+        >
           <source src={selectedExercise?.video?.url} />
         </StyledVideo>
       </div>
@@ -60,16 +65,22 @@ export default function ExercisePage() {
 
           <div className="more-info-subcontainer">
             <label className="label">Required Equipment</label>
-            <p className="text">{selectedExercise?.equipment_required || 'N/A'}</p>
+            <p className="text">
+              {selectedExercise?.equipment_required || 'N/A'}
+            </p>
           </div>
 
           <div className="more-info-subcontainer">
             <label className="label">Alternating Movement?</label>
-            <p className="text">{selectedExercise?.equipment_required ? 'Yes' : 'No'}</p>
+            <p className="text">
+              {selectedExercise?.equipment_required ? 'Yes' : 'No'}
+            </p>
           </div>
           <div className="more-info-subcontainer">
             <label className="label">Movement Patterns</label>
-            <p className="text">{selectedExercise?.movement_patterns ? 'Yes' : 'No'}</p>
+            <p className="text">
+              {selectedExercise?.movement_patterns ? 'Yes' : 'No'}
+            </p>
           </div>
         </MoreInfoContainer>
       )}
@@ -77,12 +88,16 @@ export default function ExercisePage() {
   );
 }
 
-ExercisePage.getLayout = (page: any) => <DashboardLayout>{page}</DashboardLayout>;
+ExercisePage.getLayout = (page: any) => (
+  <DashboardLayout>{page}</DashboardLayout>
+);
 
 const MainContainer = styled.div`
   .title-container {
     display: flex;
     align-items: center;
+    max-width: 750px;
+    margin: 0 auto;
 
     .title {
       font-size: 1.75rem;
@@ -93,6 +108,12 @@ const MainContainer = styled.div`
     img {
       cursor: pointer;
     }
+  }
+
+  .description {
+    max-width: 750px;
+    line-height: 1.5;
+    margin: 0 auto 1rem;
   }
 
   .video-container {
