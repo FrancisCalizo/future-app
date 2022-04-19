@@ -1,3 +1,23 @@
+## Demo here: https://future-app-nine.vercel.app/
+
+### Technologies Used
+Next.js, React-Query, Styled Components, Axios
+
+This app features the following:
+
+1. A pane on the left that allows you to browse all of the available exercises as a list of exercise names
+2. A way to highlight and select an exercise from the left pane and see the description and video of the selected exercise in a detail pane on the right
+3. A sticky pane at the top of the left pane that provides a way to live-filter the exercise list by name by way of text input.
+4. A display for more details of a given exercise
+5. A fully Responsive solution (mobile, tablet, desktop)
+6. A way to respond to a path in the URL (used path intead of query string) and automatically select that exercise and display its detail
+7. A display for more details of a given exercise.
+
+- I utilized nextjs path instead of query string params as I felt this would be faster to implement with the given time constraints
+- I was unable to add the optional filters due to time constraints
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
