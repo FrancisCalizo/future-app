@@ -3,10 +3,12 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { darken, lighten } from 'polished';
+import Image from 'next/image';
 
 import { _AppContext } from 'components/AppContext';
 import { getPathName } from 'components/utils';
 import SearchFilter from 'components/SearchFilter';
+import FutureLogo from 'public/images/future-logo.png';
 
 export default function Sidebar() {
   const {
@@ -49,6 +51,10 @@ export default function Sidebar() {
 
   return (
     <SidebarContainer>
+      <div style={{ height: 200, width: '100%', padding: '.5rem 1.5rem' }}>
+        <Image alt="Pronunciation" src={FutureLogo} layout="responsive" />
+      </div>
+
       <h3 className="heading">Exercise List</h3>
 
       <div className="search-filter-container">
@@ -88,6 +94,7 @@ export const SidebarContainer = styled.div`
 
   .heading {
     text-align: center;
+    margin-top: 0;
   }
 
   .search-filter-container {
