@@ -1,0 +1,15 @@
+import React from 'react';
+import styled from 'styled-components';
+
+export default function Content({ children }: any) {
+  return <MainContainer>{children}</MainContainer>;
+}
+
+const MainContainer = styled.div`
+  background: #f1f2f6;
+  padding: 1rem;
+
+  @media (min-width: 769px) {
+    margin-left: 280px;
+  }
+`;
