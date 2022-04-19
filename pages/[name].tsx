@@ -18,6 +18,10 @@ export default function ExercisePage() {
     audio.play();
   };
 
+  if (!selectedExercise) {
+    return <h1> Exercise not found :(</h1>;
+  }
+
   return (
     <MainContainer>
       <div className="title-container">
@@ -33,7 +37,7 @@ export default function ExercisePage() {
         />
       </div>
 
-      <p className="description">{selectedExercise.description}</p>
+      <p className="description">{selectedExercise?.description}</p>
 
       <div className="video-container">
         <StyledVideo width={600} height={500} key={selectedExercise?.video?.url} controls>

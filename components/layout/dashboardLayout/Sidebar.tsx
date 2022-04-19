@@ -51,8 +51,8 @@ export default function Sidebar() {
 
   return (
     <SidebarContainer>
-      <div style={{ height: 200, width: '100%', padding: '.5rem 1.5rem' }}>
-        <Image alt="Pronunciation" src={FutureLogo} layout="responsive" />
+      <div className="logo-container">
+        <Image alt="Future" src={FutureLogo} layout="responsive" />
       </div>
 
       <h3 className="heading">Exercise List</h3>
@@ -91,6 +91,11 @@ export const SidebarContainer = styled.div`
   box-sizing: border-box;
 
   transition: all 300ms ease-in-out;
+
+  .logo-container {
+    width: 100%;
+    padding: 0.5rem 1.5rem;
+  }
 
   .heading {
     text-align: center;
